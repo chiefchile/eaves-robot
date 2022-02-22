@@ -66,6 +66,14 @@ public class Robot {
         currY = newY;
     }
 
+    public void left() {
+        currF = currF.rotateCounterClockwise();
+    }
+
+    public void right() {
+        currF = currF.rotateClockwise();
+    }
+
     public Integer getCurrX() {
         return currX;
     }
