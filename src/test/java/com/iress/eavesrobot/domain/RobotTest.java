@@ -10,42 +10,42 @@ import org.junit.Test;
 public class RobotTest {
 
     @Test
-    public void testValidatePosition_NewXLessThan0() {
+    public void testValidatePosition_XLessThan0() {
         Robot robot = new Robot(new Table(5, 5));
         assertFalse(robot.validatePosition(-1, 1));
 
     }
 
     @Test
-    public void testValidatePosition_NewXEqualToTableWidth() {
+    public void testValidatePosition_XEqualToTableWidth() {
         int width = 5;
         Robot robot = new Robot(new Table(width, 10));
         assertFalse(robot.validatePosition(width, 0));
     }
 
     @Test
-    public void testValidatePosition_NewXGreaterThanTableWidth() {
+    public void testValidatePosition_XGreaterThanTableWidth() {
         int width = 5;
         Robot robot = new Robot(new Table(width, 10));
         assertFalse(robot.validatePosition(width + 1, 3));
     }
 
     @Test
-    public void testValidatePosition_NewYLessThan0() {
+    public void testValidatePosition_YLessThan0() {
         Robot robot = new Robot(new Table(5, 5));
         assertFalse(robot.validatePosition(1, -1));
 
     }
 
     @Test
-    public void testValidatePosition_NewYEqualToTableHeight() {
+    public void testValidatePosition_YEqualToTableHeight() {
         int height = 10;
         Robot robot = new Robot(new Table(5, height));
         assertFalse(robot.validatePosition(1, height));
     }
 
     @Test
-    public void testValidatePosition_NewYGreaterThanTableHeight() {
+    public void testValidatePosition_YGreaterThanTableHeight() {
         int height = 2;
         Robot robot = new Robot(new Table(5, height));
         assertFalse(robot.validatePosition(1, height + 1));

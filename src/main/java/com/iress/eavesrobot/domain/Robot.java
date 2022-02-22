@@ -26,8 +26,8 @@ public class Robot {
 
     }
 
-    public boolean validatePosition(int newX, int newY) {
-        if (newX < 0 || newX >= table.getWidth() || newY < 0 || newY >= table.getHeight()) {
+    public boolean validatePosition(int x, int y) {
+        if (x < 0 || x >= table.getWidth() || y < 0 || y >= table.getHeight()) {
             return false;
         }
 
