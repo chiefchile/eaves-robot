@@ -168,6 +168,19 @@ public class RobotTest {
         assertThat(robot.getCurrY(), is(y));
     }
 
+    @Test
+    public void testReport() {
+        Robot robot = new Robot(new Table(5, 5));
+        int x = 1;
+        int y = 0;
+        Direction direction = Direction.WEST;
+        robot.place(x, y, direction);
+
+        String output = robot.report();
+
+        assertThat(output, is("Output: 1,0,WEST"));
+    }
+
 
 
 }

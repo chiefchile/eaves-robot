@@ -74,6 +74,10 @@ public class Robot {
         currF = currF.rotateClockwise();
     }
 
+    public String report() {
+        return String.format("Output: %d,%d,%s", currX, currY, currF);
+    }
+
     public Integer getCurrX() {
         return currX;
     }
