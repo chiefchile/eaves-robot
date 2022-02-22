@@ -87,6 +87,87 @@ public class RobotTest {
         assertNull(robot.getCurrF());
     }
 
+    @Test
+    public void testMove_NotPlaced() {
+        Robot robot = new Robot(new Table(5, 5));
+
+        robot.move();
+
+        assertNull(robot.getCurrX());
+        assertNull(robot.getCurrY());
+        assertNull(robot.getCurrF());
+    }
+
+    @Test
+    public void testMove_InvalidPosition() {
+        Robot robot = new Robot(new Table(5, 5));
+        int x = 0;
+        int y = 0;
+        Direction direction = Direction.SOUTH;
+        robot.place(x, y, direction);
+
+        robot.move();
+
+        assertThat(robot.getCurrX(), is(x));
+        assertThat(robot.getCurrY(), is(y));
+    }
+
+    @Test
+    public void testMove_FacingNorth() {
+        Robot robot = new Robot(new Table(5, 5));
+        int x = 0;
+        int y = 0;
+        Direction direction = Direction.NORTH;
+        robot.place(x, y, direction);
+
+        robot.move();
+
+        assertThat(robot.getCurrX(), is(x));
+        assertThat(robot.getCurrY(), is(y + 1));
+    }
+
+    @Test
+    public void testMove_FacingSouth() {
+        Robot robot = new Robot(new Table(5, 5));
+        int x = 0;
+        int y = 1;
+        Direction direction = Direction.SOUTH;
+        robot.place(x, y, direction);
+
+        robot.move();
+
+        assertThat(robot.getCurrX(), is(x));
+        assertThat(robot.getCurrY(), is(y - 1));
+    }
+
+    @Test
+    public void testMove_FacingEast() {
+        Robot robot = new Robot(new Table(5, 5));
+        int x = 0;
+        int y = 0;
+        Direction direction = Direction.EAST;
+        robot.place(x, y, direction);
+
+        robot.move();
+
+        assertThat(robot.getCurrX(), is(x + 1));
+        assertThat(robot.getCurrY(), is(y));
+    }
+
+    @Test
+    public void testMove_FacingWest() {
+        Robot robot = new Robot(new Table(5, 5));
+        int x = 1;
+        int y = 0;
+        Direction direction = Direction.WEST;
+        robot.place(x, y, direction);
+
+        robot.move();
+
+        assertThat(robot.getCurrX(), is(x - 1));
+        assertThat(robot.getCurrY(), is(y));
+    }
+
 
 
 }

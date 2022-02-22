@@ -11,10 +11,6 @@ public class Robot {
         this.table = table;
     }
 
-    public Table getTable() {
-        return table;
-    }
-
     public void place(int x, int y, Direction f) {
         if (!validatePosition(x, y)) {
             return;
@@ -23,15 +19,51 @@ public class Robot {
         currX = x;
         currY = y;
         currF = f;
-
     }
 
-    public boolean validatePosition(int x, int y) {
+    boolean validatePosition(int x, int y) {
         if (x < 0 || x >= table.getWidth() || y < 0 || y >= table.getHeight()) {
             return false;
         }
 
         return true;
+    }
+
+    public void move() {
+        if (currX == null) {
+            return;
+        }
+
+        Integer newX = currX;
+        Integer newY = currY;
+
+        switch (currF) {
+            case NORTH:
+                newY++;
+                break;
+
+            case SOUTH:
+                newY--;
+                break;
+
+            case EAST:
+                newX++;
+                break;
+
+            case WEST:
+                newX--;
+                break;
+
+            default:
+                throw new RuntimeException("Invalid direction");
+        }
+
+        if (!validatePosition(newX, newY)) {
+            return;
+        }
+
+        currX = newX;
+        currY = newY;
     }
 
     public Integer getCurrX() {
@@ -46,5 +78,8 @@ public class Robot {
         return currF;
     }
 
+    public Table getTable() {
+        return table;
+    }
 
 }
