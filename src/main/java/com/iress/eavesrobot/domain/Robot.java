@@ -81,7 +81,7 @@ public class Robot {
     }
 
     public String report() {
-        return String.format("Output: %d,%d,%s", currX, currY, currF);
+        return currX == null ? "" : String.format("Output: %d,%d,%s", currX, currY, currF);
     }
 
     public Integer getCurrX() {

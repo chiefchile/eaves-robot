@@ -11,7 +11,7 @@ public class RobotTest {
 
     @Test
     public void testValidatePosition_XLessThan0() {
-        Robot robot = new Robot(new Table(5, 5));
+        Robot robot = Robot.withDefaultTable();
         assertFalse(robot.validatePosition(-1, 1));
 
     }
@@ -32,7 +32,7 @@ public class RobotTest {
 
     @Test
     public void testValidatePosition_YLessThan0() {
-        Robot robot = new Robot(new Table(5, 5));
+        Robot robot = Robot.withDefaultTable();
         assertFalse(robot.validatePosition(1, -1));
 
     }
@@ -53,15 +53,13 @@ public class RobotTest {
 
     @Test
     public void testValidatePosition_Valid() {
-        Robot robot = new Robot(new Table(5, 5));
+        Robot robot = Robot.withDefaultTable();
         assertTrue(robot.validatePosition(1, 1));
     }
 
     @Test
     public void testPlace_Valid() {
-        int width = 5;
-        int height = 5;
-        Robot robot = new Robot(new Table(width, height));
+        Robot robot = Robot.withDefaultTable();
         int x = 1;
         int y = 1;
         Direction f = Direction.NORTH;
@@ -89,7 +87,7 @@ public class RobotTest {
 
     @Test
     public void testMove_NotPlaced() {
-        Robot robot = new Robot(new Table(5, 5));
+        Robot robot = Robot.withDefaultTable();
 
         robot.move();
 
@@ -100,7 +98,7 @@ public class RobotTest {
 
     @Test
     public void testMove_InvalidPosition() {
-        Robot robot = new Robot(new Table(5, 5));
+        Robot robot = Robot.withDefaultTable();
         int x = 0;
         int y = 0;
         Direction direction = Direction.SOUTH;
@@ -114,7 +112,7 @@ public class RobotTest {
 
     @Test
     public void testMove_FacingNorth() {
-        Robot robot = new Robot(new Table(5, 5));
+        Robot robot = Robot.withDefaultTable();
         int x = 0;
         int y = 0;
         Direction direction = Direction.NORTH;
@@ -128,7 +126,7 @@ public class RobotTest {
 
     @Test
     public void testMove_FacingSouth() {
-        Robot robot = new Robot(new Table(5, 5));
+        Robot robot = Robot.withDefaultTable();
         int x = 0;
         int y = 1;
         Direction direction = Direction.SOUTH;
@@ -142,7 +140,7 @@ public class RobotTest {
 
     @Test
     public void testMove_FacingEast() {
-        Robot robot = new Robot(new Table(5, 5));
+        Robot robot = Robot.withDefaultTable();
         int x = 0;
         int y = 0;
         Direction direction = Direction.EAST;
@@ -156,7 +154,7 @@ public class RobotTest {
 
     @Test
     public void testMove_FacingWest() {
-        Robot robot = new Robot(new Table(5, 5));
+        Robot robot = Robot.withDefaultTable();
         int x = 1;
         int y = 0;
         Direction direction = Direction.WEST;
@@ -169,8 +167,8 @@ public class RobotTest {
     }
 
     @Test
-    public void testReport() {
-        Robot robot = new Robot(new Table(5, 5));
+    public void testReport_Placed() {
+        Robot robot = Robot.withDefaultTable();
         int x = 1;
         int y = 0;
         Direction direction = Direction.WEST;
@@ -179,6 +177,15 @@ public class RobotTest {
         String output = robot.report();
 
         assertThat(output, is("Output: 1,0,WEST"));
+    }
+
+    @Test
+    public void testReport_NotPlaced() {
+        Robot robot = Robot.withDefaultTable();
+
+        String output = robot.report();
+
+        assertThat(output, is(""));
     }
 
 
