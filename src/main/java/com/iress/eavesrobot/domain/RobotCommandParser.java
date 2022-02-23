@@ -1,12 +1,11 @@
 package com.iress.eavesrobot.domain;
 
 import java.lang.reflect.Constructor;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import org.reflections.Reflections;
-import org.reflections.scanners.SubTypesScanner;
+import com.iress.eavesrobot.domain.command.PlaceCommand;
 
 public class RobotCommandParser {
     private static final Map<String, Class<?>> COMMANDS_MAP = populateMap();
@@ -21,10 +20,14 @@ public class RobotCommandParser {
         return map;
     }
 
-    private static List<Class<?>> findCommandClasses() {
-        String packageName = "com.iress.eavesrobot.domain.command";
-        Reflections reflections = new Reflections(packageName, new SubTypesScanner(false));
-        return reflections.getSubTypesOf(Object.class).stream().collect(Collectors.toList());
+    static List<Class<?>> findCommandClasses() {
+        // String packageName = "com.iress.eavesrobot.domain.command";
+        // Reflections reflections = new Reflections(packageName, new SubTypesScanner(false));
+        // return reflections.getSubTypesOf(Object.class).stream().collect(Collectors.toList());
+
+        List<Class<?>> classes = new ArrayList<Class<?>>();
+        classes.add(PlaceCommand.class);
+        return classes;
     }
 
     // Returns "" if successful. Returns "Output..." if reporting. Any other return value is an
