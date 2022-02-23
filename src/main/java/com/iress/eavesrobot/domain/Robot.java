@@ -1,6 +1,8 @@
 package com.iress.eavesrobot.domain;
 
 public class Robot {
+    private static final int DEFAULT_HEIGHT = 5;
+    private static final int DEFAULT_WIDTH = 5;
     private Table table;
     private Integer currX;
     private Integer currY;
@@ -9,6 +11,10 @@ public class Robot {
     public Robot(Table table) {
         super();
         this.table = table;
+    }
+
+    public static Robot withDefaultTable() {
+        return new Robot(new Table(DEFAULT_WIDTH, DEFAULT_HEIGHT));
     }
 
     public void place(int x, int y, Direction f) {
