@@ -182,10 +182,22 @@ public class RobotTest {
     @Test
     public void testReport_NotPlaced() {
         Robot robot = Robot.withDefaultTable();
-
         String output = robot.report();
-
         assertThat(output, is(""));
+    }
+
+    @Test
+    public void testLeft_NotPlaced() {
+        Robot robot = Robot.withDefaultTable();
+        robot.left();
+        assertNull(robot.getCurrF());
+    }
+
+    @Test
+    public void testRight_NotPlaced() {
+        Robot robot = Robot.withDefaultTable();
+        robot.right();
+        assertNull(robot.getCurrF());
     }
 
 

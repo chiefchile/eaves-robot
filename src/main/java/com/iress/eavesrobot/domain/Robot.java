@@ -73,10 +73,18 @@ public class Robot {
     }
 
     public void left() {
+        if (currX == null) {
+            return;
+        }
+
         currF = currF.rotateCounterClockwise();
     }
 
     public void right() {
+        if (currX == null) {
+            return;
+        }
+
         currF = currF.rotateClockwise();
     }
 

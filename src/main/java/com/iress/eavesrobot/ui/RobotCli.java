@@ -33,7 +33,7 @@ public class RobotCli {
 
     void start() {
         try (Scanner in = new Scanner(inputStream, "UTF-8")) {
-            outputStream.write("EAVES-ROBOT\n".getBytes("UTF-8"));
+            outputStream.write("EAVES ROBOT CLI\n".getBytes("UTF-8"));
             outputStream.write("Enter command:\n".getBytes("UTF-8"));
             Robot robot = Robot.withDefaultTable();
             while (true) {
