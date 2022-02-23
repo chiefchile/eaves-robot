@@ -21,16 +21,10 @@ public class RobotCommandParser {
         return map;
     }
 
-    // TODO: Add other commands
     static List<Class<?>> findCommandClasses() {
         String packageName = "com.iress.eavesrobot.domain.command";
         Reflections reflections = new Reflections(packageName, new SubTypesScanner(false));
         return reflections.getSubTypesOf(Object.class).stream().collect(Collectors.toList());
-
-        // List<Class<?>> classes = new ArrayList<Class<?>>();
-        // classes.add(PlaceCommand.class);
-        // classes.add(ReportCommand.class);
-        // return classes;
     }
 
     // Returns "" if successful. Returns "Output..." if reporting. Any other return value is an
