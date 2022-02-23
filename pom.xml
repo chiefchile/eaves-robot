@@ -41,6 +41,16 @@
 		</dependency>
 	</dependencies>
 	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>com.github.spotbugs</groupId>
+					<artifactId>spotbugs-maven-plugin</artifactId>
+					<version>4.5.3.0</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -62,9 +72,29 @@
 							<descriptorRefs>
 								<descriptorRef>jar-with-dependencies</descriptorRef>
 							</descriptorRefs>
-							<finalName>${artifactId}-${version}-fat</finalName>
+							<finalName>${project.artifactId}-${project.version}-fat</finalName>
 							<appendAssemblyId>false</appendAssemblyId>
 						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- enable spotbugs code analysis -->
+			<plugin>
+				<groupId>com.github.spotbugs</groupId>
+				<artifactId>spotbugs-maven-plugin</artifactId>
+				<configuration>
+					<effort>Max</effort>
+					<fork>false</fork>
+				</configuration>
+
+				<executions>
+					<execution>
+						<id>spotbugs-integration</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
 					</execution>
 				</executions>
 			</plugin>

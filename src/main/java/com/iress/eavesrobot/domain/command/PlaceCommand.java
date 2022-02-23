@@ -40,8 +40,8 @@ public class PlaceCommand implements RobotCommand {
             return "Invalid F in command " + command;
         }
 
-        int x = Integer.valueOf(matcher.group(1));
-        int y = Integer.valueOf(matcher.group(2));
+        int x = Integer.parseInt(matcher.group(1));
+        int y = Integer.parseInt(matcher.group(2));
         robot.place(x, y, f);
         return "";
     }

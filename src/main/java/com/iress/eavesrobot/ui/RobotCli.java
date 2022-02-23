@@ -32,9 +32,9 @@ public class RobotCli {
 
 
     void start() {
-        try (Scanner in = new Scanner(inputStream)) {
-            outputStream.write("EAVES-ROBOT\n".getBytes());
-            outputStream.write("Enter command:\n".getBytes());
+        try (Scanner in = new Scanner(inputStream, "UTF-8")) {
+            outputStream.write("EAVES-ROBOT\n".getBytes("UTF-8"));
+            outputStream.write("Enter command:\n".getBytes("UTF-8"));
             Robot robot = Robot.withDefaultTable();
             while (true) {
                 String command = in.nextLine().trim();
@@ -44,7 +44,7 @@ public class RobotCli {
 
                 String parseResult = RobotCommandParser.parse(robot, command);
                 if (!parseResult.isEmpty()) {
-                    outputStream.write((parseResult + "\n").getBytes());
+                    outputStream.write((parseResult + "\n").getBytes("UTF-8"));
                 }
             }
 
