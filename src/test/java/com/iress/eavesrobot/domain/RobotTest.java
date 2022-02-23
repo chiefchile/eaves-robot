@@ -98,11 +98,9 @@ public class RobotTest {
 
     @Test
     public void testMove_InvalidPosition() {
-        Robot robot = Robot.withDefaultTable();
         int x = 0;
         int y = 0;
-        Direction direction = Direction.SOUTH;
-        robot.place(x, y, direction);
+        Robot robot = placeRobot(x, y, Direction.SOUTH);
 
         robot.move();
 
@@ -110,13 +108,18 @@ public class RobotTest {
         assertThat(robot.getCurrY(), is(y));
     }
 
+    private Robot placeRobot(int x, int y, Direction f) {
+        Robot robot = Robot.withDefaultTable();
+        robot.place(x, y, f);
+        return robot;
+    }
+
     @Test
     public void testMove_FacingNorth() {
-        Robot robot = Robot.withDefaultTable();
         int x = 0;
         int y = 0;
-        Direction direction = Direction.NORTH;
-        robot.place(x, y, direction);
+        Robot robot = placeRobot(x, y, Direction.NORTH);
+
 
         robot.move();
 
@@ -126,11 +129,9 @@ public class RobotTest {
 
     @Test
     public void testMove_FacingSouth() {
-        Robot robot = Robot.withDefaultTable();
         int x = 0;
         int y = 1;
-        Direction direction = Direction.SOUTH;
-        robot.place(x, y, direction);
+        Robot robot = placeRobot(x, y, Direction.SOUTH);
 
         robot.move();
 
@@ -140,11 +141,9 @@ public class RobotTest {
 
     @Test
     public void testMove_FacingEast() {
-        Robot robot = Robot.withDefaultTable();
         int x = 0;
         int y = 0;
-        Direction direction = Direction.EAST;
-        robot.place(x, y, direction);
+        Robot robot = placeRobot(x, y, Direction.EAST);
 
         robot.move();
 
@@ -154,11 +153,9 @@ public class RobotTest {
 
     @Test
     public void testMove_FacingWest() {
-        Robot robot = Robot.withDefaultTable();
         int x = 1;
         int y = 0;
-        Direction direction = Direction.WEST;
-        robot.place(x, y, direction);
+        Robot robot = placeRobot(x, y, Direction.WEST);
 
         robot.move();
 
@@ -168,11 +165,9 @@ public class RobotTest {
 
     @Test
     public void testReport_Placed() {
-        Robot robot = Robot.withDefaultTable();
         int x = 1;
         int y = 0;
-        Direction direction = Direction.WEST;
-        robot.place(x, y, direction);
+        Robot robot = placeRobot(x, y, Direction.WEST);
 
         String output = robot.report();
 
