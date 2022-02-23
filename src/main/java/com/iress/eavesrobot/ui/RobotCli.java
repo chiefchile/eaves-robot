@@ -1,5 +1,6 @@
 package com.iress.eavesrobot.ui;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Scanner;
@@ -50,6 +51,12 @@ public class RobotCli {
 
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            try {
+                outputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
