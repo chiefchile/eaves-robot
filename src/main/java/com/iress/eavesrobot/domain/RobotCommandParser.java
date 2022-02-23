@@ -13,12 +13,16 @@ public class RobotCommandParser {
 
     private static Map<String, Class<?>> populateMap() {
         Map<String, Class<?>> map = new HashMap<>();
-        findCommandClasses("com.iress.eavesrobot.domain.command").forEach(clazz -> map
-                .put(clazz.getSimpleName().toUpperCase().replace("COMMAND", ""), clazz));
+        findCommandClasses().forEach(clazz -> {
+            String key = clazz.getSimpleName().toUpperCase().replace("COMMAND", "");
+            map.put(key, clazz);
+        });
+
         return map;
     }
 
-    private static List<Class<?>> findCommandClasses(String packageName) {
+    private static List<Class<?>> findCommandClasses() {
+        String packageName = "com.iress.eavesrobot.domain.command";
         Reflections reflections = new Reflections(packageName, new SubTypesScanner(false));
         return reflections.getSubTypesOf(Object.class).stream().collect(Collectors.toList());
     }
@@ -40,9 +44,5 @@ public class RobotCommandParser {
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage(), e);
         }
-    }
-
-    public static void main(String[] args) {
-
     }
 }
